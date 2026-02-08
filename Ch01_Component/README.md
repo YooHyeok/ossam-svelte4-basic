@@ -1,11 +1,10 @@
 # *[ROOT/README.md](../README.md)*
 # *[Svelte4 프로젝트 세팅](INSTALL.md)*
 
-# *Ch01) 컴포넌트*
+# *Ch01) Component*
 <details>
 <summary>접기/펼치기</summary>
 <br>
-
 
 HTML과 Javascript만으로 하드코딩할때의 DOM은 헤더 푸터와 같이 동일한 영역임에도 계속 랜더링되는 문제가 있다.  
 페이지가 이동할때마다 해당 구역을 다시 렌더링하기 때문에 시간도 오래걸리고 용량도 많이 차지한다.  
@@ -157,10 +156,5 @@ App 컴포넌트를 인스턴스화 할때 컴포넌트 프로퍼티 객체를 �
 </details>
 <br>
 
-# template
-<details>
-<summary>접기/펼치기</summary>
-<br>
-
-</details>
-<br>
+# *[Ch02) State 01](../Ch02_State01/README.md)*
+# *[Ch02) State 02](../Ch02_State02/README.md)*

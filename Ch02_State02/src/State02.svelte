@@ -10,17 +10,18 @@
 </script>
 <div>
   <h1>State02) 객체 타입 State</h1>
-  <h2>객체 접근 01 - 일반/동적</h2>
-  <h3><img src={artist["img"]} alt="사진"></h3>
-  <h3>이름 : {artist.name}</h3>
-  <h3>나이 : {artist.age}</h3>
-  <h3>키 : {artist.height}</h3>
-  <h3>소속그룹 : {artist.group}</h3>
+  <h2><img src={artist["img"]} alt="사진"></h2>
+  <h2>이름 : {artist.name}</h2>
+  <h2>나이 : {artist.age}</h2>
+  <h2>키 : {artist.height}</h2>
+  <h2>소속그룹 : {artist.group}</h2>
   <hr>
-  <h2>객체 접근 02 - 구조분해할당</h2>
-  <h3><img src={img} alt="사진"></h3>
-  <h3>이름 : {name}</h3>
-  <h3>나이 : {age}</h3>
-  <h3>키 : {height}</h3>
-  <h3>소속그룹 : {group}</h3>
+  <h2><img src={img} alt="사진"></h2>
+  <h2>이름 : {name}</h2>
+  <h2>나이 : {age}</h2>
+  <h2>키 : {height}</h2>
+  <h2>소속그룹 : {group}</h2>
+  <button on:click={() => {
+    name = ''
+  }}>초기화</button>
 </div>
