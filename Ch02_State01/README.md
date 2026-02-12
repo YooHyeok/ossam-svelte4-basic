@@ -94,3 +94,4 @@ Svelte에서는 변수 함수 호출 연산 모두 가능하다.
 
 # *[Ch02) State02](../Ch02_State02/README.md)*
 # *[Ch03) Reactivity](../Ch03_Reactivity/README.md)*
+# *[Ch04) Event](../Ch04_Event/README.md)*

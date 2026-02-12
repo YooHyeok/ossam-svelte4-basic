@@ -8,9 +8,3 @@
   <button on:click|once={e => handleClick('1번')}>버튼2</button>
   <a on:click|preventDefault={e => {confirm('유투브로 이동하시겠습니까?') && location.assign('https://youtube.com')}} href="https://youtube.com">[youtube 링크] preventDefault:기본이벤트 제거</a>
 </div>
-<style>
-  div {
-    width: 100%; height: 50%;
-    background-color: pink;
-  }
-</style>

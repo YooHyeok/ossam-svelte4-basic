@@ -1,1 +1,163 @@
+# *[ROOT/README.md](../README.md)*
 # *[Svelte4 프로젝트 세팅](INSTALL.md)*
+<br>
+
+# *[Ch01) Component](../Ch01_Component/README.md)*
+# *[Ch02) State 01](../Ch02_State01/README.md)*
+# *[Ch02) State 02](../Ch02_State02/README.md)*
+# *[Ch03) Reactivity](../Ch03_Reactivity/README.md)*
+# *Ch04) Event*
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+## 목차
+1) 이벤트 문법
+2) 인라인 이벤트
+3) 핸들러 매개변수
+4) 이벤트 수식어
+
+
+## 01) 이벤트 문법
+`<태그 on:이벤트타입명={이벤트함수}></태그>` 형태로 사용한다.  
+on 키워드 뒤에 콜론과 이벤트타입명을 지정하고 이벤트 함수를 할당한다.  
+이벤트 함수는 사용자가 정의한 익명함수, 일반함수 등을 가리키며, Vue에서는 한줄의 실행코드를 할당할 수 있으나 Svelte는 React처럼 오직 함수만 할당 가능하다.  
+
+### 마우스 좌표 출력 프로그램
+```svelte
+<script>
+  let m = {
+    x: 0,
+    y: 0,
+  }
+  const handleMouseMove = e => {
+    m.x = e.clientX
+    m.y = e.clientY
+  }
+</script>
+<div>
+  <div on:mousemove={handleMouseMove}>
+    x좌표 : {m.x} <br>
+    y좌표 : {m.y}
+  </div>
+</div>
+<style>
+  div {
+    width: 100%; height: 50%;
+    background-color: pink;
+  }
+</style>
+```
+
+## 02) 인라인 핸들러
+```svelte
+<script>
+  let m = {
+    x: 0,
+    y: 0,
+  }
+</script>
+<div>
+  <div on:mousemove={e => m = {x: e.clientX, y: e.clientY}}>
+    x좌표 : {m.x} <br>
+    y좌표 : {m.y}
+  </div>
+</div>
+<style>
+  div {
+    width: 100%; height: 50%;
+    background-color: pink;
+  }
+</style>
+```
+## 03) 핸들러 매개변수
+Svelte에서는 핸들러 매개변수를 전달할 때 함수 호출 형태로 직접 할당하면 안된다.  
+svelte와 vue 모두 함수 참조 형태로 프레임워크 내부에서 할당된 함수를 객체에 등록하고, 객체 프로퍼티에 접근하여 실제 괄호를 붙혀 실행하게 된다.  
+따라서 매개변수를 전달하기 위해서는 함수 호출 형태로 호출해야 하므로 아래와 같이 화살표함수로 한번 wrapping해야 매개변수를 전달할 수 있다.  
+```svelte
+<script>
+  const handleClick = text => alert(`${text}`)
+</script>
+<div>
+  <button on:click={handleClick('1번')}>메롱</button> <!-- 바로 호출됨 -->
+  <button on:click={e => handleClick('1번')}>메롱</button>
+</div>
+<style>
+  </style>
+```
+(괄호를 붙이면 함수를 전달하는 것이 아니라 호출된 실행 결과를 전달하게 됨)
+
+Vue의 경우는 함수 호출형태로도 가능한데, Vue는 내부적으로 컴파일러가 wrapper를 자동으로 생성한다.  
+이러한 스타일은 html에서 wrapping 내부적으로 하는 형태와 동일하다.
+### html 예제
+- 이벤트 할당
+  ```html
+  <button onclick="handler()">Click</button>
+  ```
+- 내부 변환
+  ```js
+  button.onclick = () => handler();
+  ```
+### Vue 예제
+#### 기본 함수 참조 형태
+- 이벤트 할당
+  ```vue
+  <template>
+    <button @click="handler">버튼<button>
+  </template>
+  ```
+- 내부 변환
+  ```js
+  {onClick: handler}
+  ```
+#### 함수 호출 형태
+- 이벤트 할당
+  ```vue
+  <template>
+    <button @click="handler()">버튼<button>
+  </template>
+  ```
+- 내부 변환
+  ```js
+  {onClick: ($event) => handler()}
+  ```
+
+## 04) 이벤트 수식어
+event.preventDefault(); event.stopPropagation(); 등 이벤트 제어 메소드를 호출하는 기능을 제공한다.  
+
+`on:이벤트명|수식어={핸들러}` 형태로 사용한다.
+
+vue에서 지원하는 Modifier와 같은 기능이다.
+preventDefault를 vue와 svelte 각각에서 적용하는 코드는 아래와 같다. 
+- vue 
+  ```vue
+  <template>
+    <button @click.prevent="()=>{}"></button>
+  </template>
+  ```
+- svelte
+  ```svelte
+  <button on:click|preventDefault="()=>{}"></button>
+  ```
+
+`on:이벤트명|수식어|수식어={핸들러}` 형태의 다중 처리도 가능하다. 
+- vue
+  ```vue
+  <template>
+    <button @click.stop.prevent="()=>{}"></button>
+  </template>
+  ```
+- svelte
+  ```svelte
+  <button on:click|stopPropagation|preventDefault="()=>{}"></button>
+  ```
+
+### 수식어 종류
+- preventDefault: e.preventDefault() 호출
+- stopPropagation: e.stopPropagation() 호출
+- passive: 터치 혹은 휠 이벤트로 발생하는 스크롤 성능 향상
+- capture: 버블링 단계가 아닌 캡처 단계에서 이벤트 핸들러 실행
+- once: 이벤트 핸들러를 단 한번만 실행
+- self: e.target과 이벤트 핸들러를 정의한 요소가 같을 때 실행
+
+</details>
