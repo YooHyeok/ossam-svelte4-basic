@@ -1,30 +1,14 @@
 <script>
-	export let name;
+	import Parent01 from "./props01/Parent.svelte";
+	import Parent02 from "./props02/Parent.svelte";
+	import Parent03 from "./props03/Parent.svelte";
+	import Parent04 from "./props04/Parent.svelte";
+	import Parent05 from "./props05/Parent.svelte";
+	import Parent06 from "./props06/Parent.svelte";
 </script>
-
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+<Parent01/>
+<Parent02/>
+<Parent03/>
+<Parent04/>
+<Parent05/>
+<Parent06/>
