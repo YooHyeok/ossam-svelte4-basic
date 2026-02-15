@@ -1,9 +1,8 @@
 <script>
   import Child from "./Child.svelte"
   let age01 = 20;
-  let age02 = 21;
-  const onPlus = () => {age01++, age02++}
-  const onMinus = () => {age01--, age02--}
+  const onPlus = () => age01++
+  const onMinus = () => age01--
 </script>
 <div>
   <h1>04) Props 값 변경 함수전달 자식위임</h1>
