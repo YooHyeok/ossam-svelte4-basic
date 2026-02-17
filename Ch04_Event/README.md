@@ -161,3 +161,6 @@ preventDefault를 vue와 svelte 각각에서 적용하는 코드는 아래와 �
 - self: e.target과 이벤트 핸들러를 정의한 요소가 같을 때 실행
 
 </details>
+<br>
+
+# *[Ch05) Props](../Ch05_Props/README.md)*
