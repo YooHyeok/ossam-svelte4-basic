@@ -188,3 +188,6 @@ const people {
 <hr>
 ```
 </details>
+<br>
+
+# *[Ch06) IfBlock](../Ch06_IfBlock/README.md)*

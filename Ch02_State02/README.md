@@ -173,3 +173,4 @@ Svelte에서 이벤트를 사용하는 문법은 다음과 같다.
 # *[Ch03) Reactivity](../Ch03_Reactivity/README.md)*
 # *[Ch04) Event](../Ch04_Event/README.md)*
 # *[Ch05) Props](../Ch05_Props/README.md)*
+# *[Ch06) IfBlock](../Ch06_IfBlock/README.md)*
