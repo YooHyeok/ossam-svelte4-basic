@@ -165,3 +165,4 @@ preventDefault를 vue와 svelte 각각에서 적용하는 코드는 아래와 �
 
 # *[Ch05) Props](../Ch05_Props/README.md)*
 # *[Ch06) IfBlock](../Ch06_IfBlock/README.md)*
+# *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
