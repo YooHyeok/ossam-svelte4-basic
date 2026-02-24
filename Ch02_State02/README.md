@@ -175,3 +175,4 @@ Svelte에서 이벤트를 사용하는 문법은 다음과 같다.
 # *[Ch05) Props](../Ch05_Props/README.md)*
 # *[Ch06) IfBlock](../Ch06_IfBlock/README.md)*
 # *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
+# *[Ch08) Bind01](../Ch08_Bind01/README.md)*

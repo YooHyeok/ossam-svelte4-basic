@@ -192,3 +192,4 @@ const people {
 
 # *[Ch06) IfBlock](../Ch06_IfBlock/README.md)*
 # *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
+# *[Ch08) Bind01](../Ch08_Bind01/README.md)*

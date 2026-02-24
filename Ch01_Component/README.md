@@ -163,4 +163,5 @@ App 컴포넌트를 인스턴스화 할때 컴포넌트 프로퍼티 객체를 �
 # *[Ch04) Event](../Ch04_Event/README.md)*
 # *[Ch05) Props](../Ch05_Props/README.md)*
 # *[Ch06) IfBlock](../Ch06_IfBlock/README.md)*
-# *[Ch07) EachBlock](/Ch07_EachBlock/README.md)*
+# *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
+# *[Ch08) Bind01](../Ch08_Bind01/README.md)*
