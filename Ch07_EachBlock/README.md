@@ -132,3 +132,4 @@ key를 지정할 때 index를 생략할 수는 있지만 선언부 위치를 바
 <br>
 
 # *[Ch08) Bind01](../Ch08_Bind01/README.md)*
+# *[Ch09) Bind02](../Ch09_Bind02/README.md)*

@@ -162,6 +162,7 @@ radio 타입의 bind:group에 할당한 변수에는 선택된 radio의 value값
     <p>고객님은 {choiceSize2}를 선택하셨습니다.</p>
   </div>
   ```
-
-
 </details>
+<br>
+
+# *[Ch09) Bind02](../Ch09_Bind02/README.md)*
