@@ -10,7 +10,7 @@
   }
 </script>
 <div>
-  <h1>Caminandes: Llamigos</h1>
+  <h1>04) Media bind - Caminandes: Llamigos</h1>
   <p>From <a href="https://studio.blender.org/films">Blender Studio</a>. CC-BY</p>
   <video
     poster="https://sveltejs.github.io/assets/caminandes-llamigos.jpg"

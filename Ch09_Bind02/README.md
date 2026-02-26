@@ -14,17 +14,19 @@
 # *[Ch06) IfBlock](../Ch06_IfBlock/README.md)*
 # *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
 # *[Ch08) Bind01](../Ch08_Bind01/README.md)*
-# *Ch09) Bind02 양방향 데이터 연결 - select, textarea*
+# *Ch09) Bind02 - select, textarea, media*
 <details>
 <summary>접기/펼치기</summary>
 <br>
 
-## select, textarea 바인딩
-### bind:value
+## select, textarea, media
+
+### select, textarea 바인딩
+#### bind:value
 select와 textarea에도 값을 할당활때 value속성에 할당한다.
 <br>
 
-### 예제01) select 기본
+#### 예제01) select 기본
 select의 경우 option에 부여된 value값이 select의 value에 할당한 변수에 값이 초기화된다.  
 ```svelte
 <script>
@@ -48,7 +50,7 @@ select의 경우 option에 부여된 value값이 select의 value에 할당한 �
   </select>
 </div>
 ```
-### 예제02) select multiple
+#### 예제02) select multiple
 select의 multiple은 여러개의 값을 ctrl로 선택하므로 선택된 복수개의 데이터를 bind:value 속성에 할당된 변수에 배열로 받게된다.
 ```svelte
 <script>
@@ -75,7 +77,7 @@ select의 multiple은 여러개의 값을 ctrl로 선택하므로 선택된 복�
 </div>
 
 ```
-### 예제03) textarea
+#### 예제03) textarea
 textarea는 기본적으로 텍스트 노드 혹은 value 속성에 내용을 할당할 수 있다.  
 svelte에서는 bind:value를 활용하여 값을 할당한다.
 ```svelte
@@ -87,6 +89,66 @@ svelte에서는 bind:value를 활용하여 값을 할당한다.
   <textarea rows="5">텍스트노드로 텍스트 할당</textarea>
   <textarea bind:value={text} rows="5"/>
   <p>{text}</p>
+</div>
+```
+
+### media 바인딩
+media에는 video태그와 audio태그 등이 있다.
+
+#### media bind 속성 종류
+- 읽기전용 속성
+  |     속성      |          설명                                                 |
+  |--------------|--------------------------------------------------------------|
+  |  duration    | 총 재생 길이(초단위)                                            |
+  |  buffered    | {start, end} 객체들의 배열, 버퍼 된 위치                         |
+  |  seekable    | {start, end} 객체들의 배열, 위치를 찾을 수 있는 범위               |
+  |  played      | {start, end} 객체들의 배열, 재생했던 위치                        |
+  |  seeking     | 찾는중 여부 (true/false)                                       |
+  |  ended       | 재생 종료 여부 (true/false)                                    |
+  |  videoWidth  | video태그의 너비 (video만 사용 가능, audio는 사용 불가능)         |
+  |  videoHeight | video태그의 높이 (video만 사용 가능, audio는 사용 불가능)         |
+
+- 읽기/쓰기 속성
+  |     속성      |          설명                                                 |
+  |--------------|--------------------------------------------------------------|
+  | currentTime  | 현재 재생 위치 (초단위)                                         |
+  | playbackRate | 재생 속도 (normal: 1)                                          |
+  | paused       | 일시정지 여부 (true/false)                                      |
+  | volume       | 음량 크기 (0 ~ 1 사이 값)                                       |
+
+
+#### 예제04) video 재생/정지/초기화 기능 및 총 재생시간, 현재 재생위치
+duration, currentTime, paused 속성에 대한 bind를 적용하며, 재생/정지/초기화 기능을 구현한다.
+```svelte
+<script>
+  let duration; // 총 재생시간
+  let currentTime = 0; // 현재 재생 시간
+  let paused = true; // 영상 재생 상태 (재생:false/정지:true)
+  const onPlay = () => paused = false;
+  const onPause = () => paused = true;
+  const onInitial = () => {
+    paused = true;
+    currentTime = 0;
+  }
+</script>
+<div>
+  <p>From <a href="https://studio.blender.org/films">Blender Studio</a>. CC-BY</p>
+  <video
+    poster="https://sveltejs.github.io/assets/caminandes-llamigos.jpg"
+    src="https://sveltejs.github.io/assets/caminandes-llamigos.mp4"
+    width="500"
+    bind:duration={duration}
+    bind:currentTime={currentTime}
+    bind:paused={paused}
+  >
+    <track kind="captions" />
+  </video>
+  <br />
+  <button on:click={onPlay}>재생</button>
+  <button on:click={onPause}>정지</button>
+  <button on:click={onInitial}>초기화</button>
+  <p>총 재생시간 : { Number(duration).toFixed(0) }초</p>
+  <p>현재 재생위치 : {currentTime}초</p>
 </div>
 ```
 
