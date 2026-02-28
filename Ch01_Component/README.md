@@ -166,3 +166,5 @@ App 컴포넌트를 인스턴스화 할때 컴포넌트 프로퍼티 객체를 �
 # *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
 # *[Ch08) Bind01](../Ch08_Bind01/README.md)*
 # *[Ch09) Bind02](../Ch09_Bind02/README.md)*
+# *[Ch10) Bind03](../Ch10_Bind03/README.md)*
+#

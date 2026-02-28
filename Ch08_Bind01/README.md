@@ -166,3 +166,4 @@ radio 타입의 bind:group에 할당한 변수에는 선택된 radio의 value값
 <br>
 
 # *[Ch09) Bind02](../Ch09_Bind02/README.md)*
+# *[Ch10) Bind03](../Ch10_Bind03/README.md)*

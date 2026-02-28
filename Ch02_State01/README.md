@@ -100,3 +100,4 @@ Svelte에서는 변수 함수 호출 연산 모두 가능하다.
 # *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
 # *[Ch08) Bind01](../Ch08_Bind01/README.md)*
 # *[Ch09) Bind02](../Ch09_Bind02/README.md)*
+# *[Ch10) Bind03](../Ch10_Bind03/README.md)*

@@ -146,3 +146,5 @@ computed나 useMemo처럼 직접적인 캐싱 기능을 가지고 있진 않지�
 # *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
 # *[Ch08) Bind01](../Ch08_Bind01/README.md)*
 # *[Ch09) Bind02](../Ch09_Bind02/README.md)*
+# *[Ch10) Bind03](../Ch10_Bind03/README.md)*
+#

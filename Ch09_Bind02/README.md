@@ -1,6 +1,3 @@
-# *[Svelte4 프로젝트 세팅](INSTALL.md)*
-
-
 # *[ROOT/README.md](../README.md)*
 # *[Svelte4 프로젝트 세팅](INSTALL.md)*
 <br>
@@ -153,3 +150,7 @@ duration, currentTime, paused 속성에 대한 bind를 적용하며, 재생/정�
 ```
 
 </details>
+<br>
+
+# *[Ch10) Bind03](../Ch10_Bind03/README.md)*
+
