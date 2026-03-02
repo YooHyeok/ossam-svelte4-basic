@@ -3,8 +3,8 @@
 <br>
 
 # *[Ch01) Component](../Ch01_Component/README.md)*
-# *[Ch02) State 01](../Ch02_State01/README.md)*
-# *[Ch02) State 02](../Ch02_State02/README.md)*
+# *[Ch02) State 01 - 기본 및 @html](../Ch02_State01/README.md)*
+# *[Ch02) State 02 - 이벤트 활용 및 객체, 객체-배열 타입](../Ch02_State02/README.md)*
 # *[Ch03) Reactivity](../Ch03_Reactivity/README.md)*
 # *[Ch04) Event](../Ch04_Event/README.md)*
 # *[Ch05) Props](../Ch05_Props/README.md)*
@@ -131,6 +131,6 @@ key를 지정할 때 index를 생략할 수는 있지만 선언부 위치를 바
 </details>
 <br>
 
-# *[Ch08) Bind01](../Ch08_Bind01/README.md)*
-# *[Ch09) Bind02](../Ch09_Bind02/README.md)*
-# *[Ch10) Bind03](../Ch10_Bind03/README.md)*
+# *[Ch08) Bind01 - input (value, checked, group)](../Ch08_Bind01/README.md)*
+# *# *[Ch09) Bind02 - select (multiple), textarea, media](../Ch09_Bind02/README.md)**
+# *[Ch10) Bind03 - this, component, dimension](../Ch10_Bind03/README.md)*

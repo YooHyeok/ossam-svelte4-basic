@@ -3,7 +3,7 @@
 <br>
 
 # *[Ch01) Component](../Ch01_Component/README.md)*
-# *Ch02) State 01*
+# *Ch02) State 01 - 기본 및 @html*
 <details>
 <summary>접기/펼치기</summary>
 <br>
@@ -98,6 +98,6 @@ Svelte에서는 변수 함수 호출 연산 모두 가능하다.
 # *[Ch05) Props](../Ch05_Props/README.md)*
 # *[Ch06) IfBlock](../Ch06_IfBlock/README.md)*
 # *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
-# *[Ch08) Bind01](../Ch08_Bind01/README.md)*
-# *[Ch09) Bind02](../Ch09_Bind02/README.md)*
-# *[Ch10) Bind03](../Ch10_Bind03/README.md)*
+# *[Ch08) Bind01 - input (value, checked, group)](../Ch08_Bind01/README.md)*
+# *# *[Ch09) Bind02 - select (multiple), textarea, media](../Ch09_Bind02/README.md)**
+# *[Ch10) Bind03 - this, component, dimension](../Ch10_Bind03/README.md)*

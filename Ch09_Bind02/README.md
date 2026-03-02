@@ -3,14 +3,14 @@
 <br>
 
 # *[Ch01) Component](../Ch01_Component/README.md)*
-# *[Ch02) State 01](../Ch02_State01/README.md)*
-# *[Ch02) State 02](../Ch02_State02/README.md)*
+# *[Ch02) State 01 - 기본 및 @html](../Ch02_State01/README.md)*
+# *[Ch02) State 02 - 이벤트 활용 및 객체, 객체-배열 타입](../Ch02_State02/README.md)*
 # *[Ch03) Reactivity](../Ch03_Reactivity/README.md)*
 # *[Ch04) Event](../Ch04_Event/README.md)*
 # *[Ch05) Props](../Ch05_Props/README.md)*
 # *[Ch06) IfBlock](../Ch06_IfBlock/README.md)*
 # *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
-# *[Ch08) Bind01](../Ch08_Bind01/README.md)*
+# *[Ch08) Bind01 - input (value, checked, group)](../Ch08_Bind01/README.md)*
 # *Ch09) Bind02 - select, textarea, media*
 <details>
 <summary>접기/펼치기</summary>
@@ -152,5 +152,5 @@ duration, currentTime, paused 속성에 대한 bind를 적용하며, 재생/정�
 </details>
 <br>
 
-# *[Ch10) Bind03](../Ch10_Bind03/README.md)*
+# *[Ch10) Bind03 - this, component, dimension](../Ch10_Bind03/README.md)*
 
