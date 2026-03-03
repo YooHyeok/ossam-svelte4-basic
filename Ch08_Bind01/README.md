@@ -165,5 +165,6 @@ radio 타입의 bind:group에 할당한 변수에는 선택된 radio의 value값
 </details>
 <br>
 
-# *# *[Ch09) Bind02 - select (multiple), textarea, media](../Ch09_Bind02/README.md)**
+# *[Ch09) Bind02 - select (multiple), textarea, media](../Ch09_Bind02/README.md)*
 # *[Ch10) Bind03 - this, component, dimension](../Ch10_Bind03/README.md)*
+# *[Ch11) Slot - 기본문법, Fallback, named, props, fragment, $$Slots](../Ch11_Slot/README.md)*
