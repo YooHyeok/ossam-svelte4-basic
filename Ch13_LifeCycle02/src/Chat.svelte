@@ -5,8 +5,10 @@
   let div;
   let autoscroll;
   /**
+   * offsetHeight: 요소 전체 높이
    * scrollTop: 요소 내 스크롤 된 수직 거리(최상단 ~ 스크롤 출력 시작 위치)
    * scrollHeight: 스크롤 양(스크롤바 내부 콘텐츠 전체 높이)
+   * 20: 여유값(버퍼)
   */
   beforeUpdate(() => {
     autoscroll = div && div.offsetHeight + div.scrollTop > div.scrollHeight - 20;
