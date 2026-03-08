@@ -50,6 +50,7 @@ Vue의 경우엔 아래 8가지 종류로 구성된다.
 
 ```svelte
 <script>
+  import { beforeUpdate, onMount, afterUpdate, onDestroy} from 'svelte'
   beforeUpdate(()=>console.log("beforeUpdate"))
   onMount(()=>console.log("onMount"))
   afterUpdate(()=>console.log("afterUpdate"))
@@ -82,3 +83,5 @@ destroyed는 거의 사용하지 않거나, 매우 특수한 경우(예: 외부 
 
 </details>
 <br>
+
+# *[Ch13) LifeCycle02: 응용 - elizabot 활용 챗봇, tick](../Ch13_LifeCycle02/README.md)*
