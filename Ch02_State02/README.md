@@ -180,4 +180,4 @@ Svelte에서 이벤트를 사용하는 문법은 다음과 같다.
 # *[Ch10) Bind03 - this, component, dimension](../Ch10_Bind03/README.md)*
 # *[Ch11) Slot - 기본문법, Fallback, named, props, fragment, $$Slots](../Ch11_Slot/README.md)*
 # *[Ch12) LifeCycle01: Hook - onMount, onDestroy, beforeUpdate, afterUpdate](../Ch12_LifeCycle01_Hook/README.md)*
-# *[Ch13) LifeCycle02: 응용 - elizabot 활용 챗봇, tick](../Ch13_LifeCycle02/README.md)*
+# *[Ch13) LifeCycle02: 응용 - elizabot 활용 채팅, tick](../Ch13_LifeCycle02/README.md)*

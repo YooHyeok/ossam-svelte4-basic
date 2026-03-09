@@ -11,11 +11,23 @@
    * 20: 여유값(버퍼)
   */
   beforeUpdate(() => {
+    console.log("[beforeUpdate: START]")
+    if (div) {
+      
+      console.log("offsetHeight = ", div.offsetHeight)
+      console.log("scrollTop = ", div.scrollTop)
+      console.log("scrollHeight = ", div.scrollHeight)
+      console.log("[beforeUpdate: END]")
+    }
     autoscroll = div && div.offsetHeight + div.scrollTop > div.scrollHeight - 20;
   })
   afterUpdate(() => {
     if (autoscroll) {
+      console.log("[afterUpdate: START]")
+      console.log("scrollTop = ", div.scrollTop, " scrollHeight = ", div.scrollHeight)
       div.scrollTop = div.scrollHeight;
+      console.log("scrollTop = ", div.scrollTop, " scrollHeight = ", div.scrollHeight)
+      console.log("[afterUpdate: END]")
     }
   })
 

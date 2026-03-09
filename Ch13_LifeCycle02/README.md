@@ -16,10 +16,112 @@
 # *[Ch10) Bind03 - this, component, dimension](../Ch10_Bind03/README.md)*
 # *[Ch11) Slot - 기본문법, Fallback, named, props, fragment, $$Slots](../Ch11_Slot/README.md)*
 # *[Ch12) LifeCycle01: Hook - onMount, onDestroy, beforeUpdate, afterUpdate](../Ch12_LifeCycle01_Hook/README.md)*
-# *Ch13) LifeCycle02: 응용 - elizabot 활용 챗봇, tick*
+# *Ch13) LifeCycle02: 응용 - elizabot 활용 채팅, tick*
 <details>
 <summary>접기/펼치기</summary>
 <br>
+
+## elizabot 채팅 - update 활용
+
+### [elizabot](https://www.npmjs.com/package/elizabot)
+eliza는 가짜 심리치료사로 개발자가 만든 채팅 플러그인이다.  
+주로 채팅 봇을 테스트 하기 위해 사용한다.  
+
+#### 의존성 설치
+```bash
+npm install elizabot
+```
+
+### 예제) 채팅창 구현 및 스크롤 하단 고정
+채팅 창을 제작하여 elizabot을 연동하면, 실제 채팅처럼 말풍선을 주고받을 수 있게 된다.  
+이때 채팅창 컨텐츠 영역에 지정한 높이 이상으로 말풍선이 들어오게 되면 스크롤바가 생성되고, 마지막 위치에 스크롤된 상태로 있게 된다.  
+컨텐츠 영역의 설정한 높이를 초과하여 스크롤이 생성되었을 때, 컨텐츠 영역이 길어질 때 마다 스크롤을 하단으로 이동시키는 로직을 구현해본다.  
+
+#### 계산 필요 속성
+- offsetHeight : div 안에서 보여지는 영역 높이
+- scrollTop    : 현재 스크롤 위치 (최상단 ~ 스크롤 시작 위치)
+- scrollHeight : div 내부 전체 콘텐츠 높이
+- 20           : 버퍼 값, 아래쪽 여유
+
+
+#### 스크롤 없음
+
+- beforeUpdate
+  ```svelte
+  <script>
+    import { beforeUpdate, afterUpdate } from 'svelte'
+    beforeUpdate(() => {
+      autoscroll = div && div.offsetHeight + div.scrollTop > div.scrollHeight - 20;
+    })
+  </script>
+  ```
+  - 공식: 영역 전체 높이 + 스크롤 위치 > 컨텐츠 전체 높이 - 20  
+    ```
+    offsetHeight + scrollTop = 767 + 0 = 767
+    scrollHeight - 20      = 766 - 20 = 746
+    ```
+
+- 스크롤 위치: 0
+  ```
+  [div 영역]
+  ┌──────────────────┐ <- scrollTop (0) (스크롤 없음)
+  │ visible content  │ 
+  │                  │
+  │                  │
+  │                  │
+  │                  │ <- scrollHeight (766) 
+  └──────────────────┘ <- offsetHeight (767)
+  767 + 0 = [767] > 766 - 20 = [746]
+  autoscroll = true
+  ```
+
+#### 스크롤 생성 및 이동
+```svelte
+<script>
+  import { beforeUpdate, afterUpdate } from 'svelte'
+  afterUpdate(() => {
+    if (autoscroll) {
+      div.scrollTop = div.scrollHeight;
+    }
+  })
+</script>
+```
+
+1) 스크롤 생성: 최상단 (스크롤 위치: 0)  
+  - div 내부 전체 콘텐츠 높이 scrollHeight가 offsetHeight 초과  
+  - 추가된 컨텐츠 높이 7  
+  ```
+  [div 영역]
+  ┌──────────────────┐ <- scrollTop (0) (스크롤 생성: 새로 추가된 1줄만 계산됨)
+  │ visible content  │ 
+  │                  │
+  │                  │
+  │                  │ 
+  │                  │ 
+  │ new message ↑    │ <- offsetHeight (767)
+  └──────────────────┘ <- scrollHeight (773)
+  767 + 7 = [774] > 773 - 20 = [753]
+  autoscroll = true
+  ```
+
+2) 스크롤 이동: 7만큼 이동 (스크롤 위치: 7)  
+스크롤이 최상단에서 추가된 컨텐츠 높이 만큼 7 증가함  
+afterUpdate에 의해 scrollTop의 값을 offsetHeight만큼 더한다.  
+(이때 추가된 컨텐츠 높이 7 만큼을 넘을 수 없기 때문에 7만큼만 증가함.)  
+```
+[div 영역]
+┌──────────────────┐ 
+│ visible content  │ <- scrollTop (7) (스크롤 생성: 새로 추가된 1줄만 계산됨)
+│                  │
+│                  │
+│                  │ 
+│                  │ 
+│ new message ↑    │ <- offsetHeight (767)
+└──────────────────┘ <- scrollHeight (773)
+767 + 7 = [774] > 773 - 20 = [753]
+autoscroll = true
+```
+
 
 ## tick
 
