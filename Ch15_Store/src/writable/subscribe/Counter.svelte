@@ -8,7 +8,7 @@
   const unsubscribe = count.subscribe((value) => countValue = value)
 </script>
 <div>
-  <h1>01) Writable - 수동 구독</h1>
+  <h1>01) Writable- 카운터 예제(수동 구독)</h1>
   <h4>값: { countValue }</h4>
   <Increment/>
   <Decrement/>

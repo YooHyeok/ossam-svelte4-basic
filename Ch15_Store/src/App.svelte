@@ -1,6 +1,6 @@
 <script>
-	import Counter01 from './writable/Counter.svelte'
-	import Counter02 from './writable/subscribe/Counter.svelte'
+	import Writable from './writable/Writable.svelte'
+	import Readable from './readable/Readable.svelte'
 </script>
-<Counter01/>
-<Counter02/>
+<Writable/>
+<Readable/>
