@@ -1,5 +1,5 @@
 <script>
-	import { time, elapsed } from '../store/derived'
+	import { time, elapsed } from '../../store/derived'
 	const formatter = new Intl.DateTimeFormat('en', {
 		hour12: true,
 		hour: 'numeric',

@@ -1,5 +1,5 @@
 <script>
-	import { time } from '../store/readable'
+	import { time } from '../../store/readable'
 	const formatter = new Intl.DateTimeFormat('en', {
 		hour12: true,
 		hour: 'numeric',

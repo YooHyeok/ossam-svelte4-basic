@@ -1,5 +1,5 @@
 <script>
-  import { count } from '../../store/writable'
+  import { count } from '../../../store/writable'
   import Increment from './Increment.svelte'
   import Decrement from './Decrement.svelte'
   import Reset from './Reset.svelte'

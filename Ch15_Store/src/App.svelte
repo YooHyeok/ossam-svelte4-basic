@@ -1,7 +1,7 @@
 <script>
-	import Writable from './writable/Writable.svelte'
-	import Readable from './readable/Readable.svelte'
-	import Derived from './derived/Derived.svelte'
+	import Writable from './component/writable/Writable.svelte'
+	import Readable from './component/readable/Readable.svelte'
+	import Derived from './component/derived/Derived.svelte'
 </script>
 <Writable/>
 <Readable/>

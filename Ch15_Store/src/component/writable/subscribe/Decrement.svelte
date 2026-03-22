@@ -1,5 +1,5 @@
 <script>
-  import { count } from '../store/writable'
+  import { count } from '../../../store/writable'
   const decrement = () => count.update(n => n - 1)
 </script>
 <button on:click={decrement}>-</button>
