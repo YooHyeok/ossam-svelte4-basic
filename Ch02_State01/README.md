@@ -104,5 +104,6 @@ Svelte에서는 변수 함수 호출 연산 모두 가능하다.
 # *[Ch11) Slot - 기본문법, Fallback, named, props, fragment, $$Slots](../Ch11_Slot/README.md)*
 # *[Ch12) LifeCycle01: Hook - onMount, onDestroy, beforeUpdate, afterUpdate](../Ch12_LifeCycle01_Hook/README.md)*
 # *[Ch13) LifeCycle02: 응용 - elizabot 활용 채팅, tick](../Ch13_LifeCycle02/README.md)*
-# *[Ch14) CPropDrilling과 ContextAPI](../Ch14_ContextAPI/README.md)*
+# *[Ch14) PropDrilling과 ContextAPI](../Ch14_ContextAPI/README.md)*
 # *[Ch15) Store](../Ch15_Store/README.md)*
+# *[Ch16) CustomStore와 bind, ContextAPI 결합](../Ch16_CustomStore/README.md)*

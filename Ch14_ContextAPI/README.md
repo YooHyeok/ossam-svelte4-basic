@@ -17,7 +17,7 @@
 # *[Ch11) Slot - 기본문법, Fallback, named, props, fragment, $$Slots](../Ch11_Slot/README.md)*
 # *[Ch12) LifeCycle01: Hook - onMount, onDestroy, beforeUpdate, afterUpdate](../Ch12_LifeCycle01_Hook/README.md)*
 # *[Ch13) LifeCycle02: 응용 - elizabot 활용 채팅, tick](../Ch13_LifeCycle02/README.md)*
-# *Ch14) PropDrilling과 ContextAPI *
+# *Ch14) PropDrilling과 ContextAPI*
 <details>
 <summary>접기/펼치기</summary>
 <br>
@@ -136,3 +136,6 @@ svelte5의 룬($)문법을 사용하면 conetextAPI의 반응성을 유지시킬
 
 </details>
 <br>
+
+# *[Ch15) Store](../Ch15_Store/README.md)*
+# *[Ch16) CustomStore와 bind, ContextAPI 결합](../Ch16_CustomStore/README.md)*

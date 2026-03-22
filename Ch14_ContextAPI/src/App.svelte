@@ -1,6 +1,6 @@
 <script>
-	import PropsGrand01 from './prop-drilling/PropsGrand.svelte'
-	import PropsGrand02 from './context-api/PropsGrand.svelte'
+	import PropsGrand from './prop-drilling/PropsGrand.svelte'
+	import ContextGrand from './context-api/ContextGrand.svelte'
 </script>
-<PropsGrand01 />
-<PropsGrand02 />
+<PropsGrand />
+<ContextGrand />
