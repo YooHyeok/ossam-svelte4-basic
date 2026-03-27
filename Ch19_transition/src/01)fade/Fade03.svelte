@@ -1,6 +1,5 @@
 <script>
   import { fade } from 'svelte/transition'
-  import { elasticInOut } from 'svelte/easing'
   
   let visible = false
 </script>

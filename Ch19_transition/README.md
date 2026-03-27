@@ -1,1 +1,195 @@
+# *[ROOT/README.md](../README.md)*
 # *[Svelte4 프로젝트 세팅](INSTALL.md)*
+<br>
+
+# *[Ch01) Component](../Ch01_Component/README.md)*
+# *[Ch02) State 01 - 기본 및 @html](../Ch02_State01/README.md)*
+# *[Ch02) State 02 - 이벤트 활용 및 객체, 객체-배열 타입](../Ch02_State02/README.md)*
+# *[Ch03) Reactivity](../Ch03_Reactivity/README.md)*
+# *[Ch04) Event](../Ch04_Event/README.md)*
+# *[Ch05) Props](../Ch05_Props/README.md)*
+# *[Ch06) IfBlock](../Ch06_IfBlock/README.md)*
+# *[Ch07) EachBlock](../Ch07_EachBlock/README.md)*
+# *[Ch08) Bind01 - input (value, checked, group)](../Ch08_Bind01/README.md)*
+# *[Ch08) Bind01 - input (value, checked, group)](../Ch08_Bind01/README.md)*
+# *[Ch09) Bind02 - select (multiple), textarea, media](../Ch09_Bind02/README.md)*
+# *[Ch10) Bind03 - this, component, dimension](../Ch10_Bind03/README.md)*
+# *[Ch11) Slot - 기본문법, Fallback, named, props, fragment, $$Slots](../Ch11_Slot/README.md)*
+# *[Ch12) LifeCycle01: Hook - onMount, onDestroy, beforeUpdate, afterUpdate](../Ch12_LifeCycle01_Hook/README.md)*
+# *[Ch13) LifeCycle02: 응용 - elizabot 활용 채팅, tick](../Ch13_LifeCycle02/README.md)*
+# *[Ch14) PropDrilling과 ContextAPI](../Ch14_ContextAPI/README.md)*
+# *[Ch15) Store](../Ch15_Store/README.md)*
+# *[Ch16) Custom Store와 bind, ConetxtAPI 결합](../Ch16_CustomStore/README.md)*
+# *[Ch17) CssClass](../Ch17_CssClass/README.md)*
+# *[Ch18) Rollup 기반 Sass 적용](../Ch18_rollup-sass/README.md)*
+# *Ch19) Transition*
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+1. fade
+2. blur & slide
+3. scale & fly
+4. draw & crossfade
+5. custom transition
+
+## Transition
+트랜지션은 HTML 요소에서 화면전환 효과(나타나거나 사라지는) 기능이다.  
+jQuery의 fadeIn/fadeOut, slideDown/slideUp과 같은 효과이다.
+
+## fade
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+1. transition 지시문
+2. fade 기본 예제
+3. fade 파라미터
+4. in: & out: 지시문 활용
+
+### transition 지시문
+Svelte는 `transition:` 지시문을 이용하여 콘텐츠 요소의 화면전환 효과를 준다.  
+
+`transition:` 지시문은 `bind:`나 `let:` 혹은 `class:` 처럼 사용되는 지시문이다.  
+
+지시문은 특정 명령을 저장하고 있는 것인데, `transition:`은 나타나고 사라지는 화면전환을 주는 명령을 갖고 있다.  
+
+```svelte
+<script>
+  import { 트랜지션명 } from 'svelte/transition';
+</script>
+<태그요소 transition:트랜지션명={{파라미터}} />
+```
+
+| 트랜지션명 | 설명 |
+|-----------|------|
+| fade | 요소의 투명도를 이용해 애니메이션한다. |
+| blur | 요소의 블투명도와 함께 흐림필터를 애니메이션에 적용한다. |
+| slide | 요소를 상단 혹은 좌측 기준으로 나타나거나 사라지한. |
+| scale | 요소의 블투명도와 크기에 애니메이션을 적용한다. |
+| fly | 요소의 x, y 위치와 블투명도에 애니메이션을 전환한다. |
+| draw | SVG요소를 애니메이션 적용한다. |
+
+### fade 기본
+```svelte
+<태그요소 transition:fade />
+```
+fade 효과는 사라지면서 발생하는 효과이므로 if 블록과 함께 사용된다.  
+if 블록으로 조건에의해 출력/미출력시 fade가 적용된다.
+
+아래는 체크박스를 선택 여부에 따라 출력/해제로 인한 fade효과를 적용한 코드이다.  
+
+#### 예제)
+```svelte
+<script>
+  import { fade } from 'svelte/transition'
+  let visible = false
+</script>
+<div>
+  <label>
+    <input type="checkbox" bind:checked={visible} />보임
+  </label>
+  {#if visible}
+    <p transition:fade>Svelte Fade Effect</p>
+  {/if}
+</div>
+```
+
+### fade 파라미터
+fade 효과에 세부 옵션을 지정하는 방식이다.  
+객체 형태로 옵션을 할당한다.  
+
+```svelte
+<태그요소 transition:fade={{파라미터}} />
+```
+파라미터는 object 형태이기 때문에 중괄호를 2번 작성해야 한다.  
+
+| 파라미터명 | 설명 |
+|-----------|------|
+| delay | 효과를 지연시키는 속성이다.<br>기본값은 0이고, 숫자로 작성한다.<br>단위는 밀리초 단위이다. |
+| duration | 변화가 일어나는 시간이다.<br>기본값은 400이고, 숫자로 작성한다.<br>단위는 밀리초 단위이다. |
+| easing | 변화에 속도감을 주는 속성이다.<br>easing함수명을 작성하면 된다.<br>기본값은 linear이다.<br>사용시 easing플러그인을 붙여줘야 한다. |
+
+[Svelte 가이드: easing](https://svelte.dev/docs/svelte/svelte-easing)
+
+#### 예제)
+아래 코드는 파라미터로 fade 효과의 세부 설정을 하며, easing을 추가 적용한다.  
+- delay 500을 통해 0.5 초 기다린 후 출력
+- duration 1000을 통해 1초동안 변화 진행
+- easing의 경우 slide나 fly등 움직이는 효과에 주는것이 더 디테일하게 보인다.  
+  fade는 위치를 유지하며 출력되는 효과이므로, 움직임이 없어 다이나믹한 효과를 기대하기 어렵다.
+```svelte
+<script>
+  import { fade } from 'svelte/transition'
+  import { elasticInOut } from 'svelte/easing'
+  
+  let visible = false
+</script>
+<div>
+  <label>
+    <input type="checkbox" bind:checked={visible} />보임
+  </label>
+  {#if visible}
+  <p 
+    transition:fade={{
+      delay: 500, // 0.5초 딜레이 후 출력
+      duration: 1000, // 1초간 변화
+      easing: elasticInOut, // 
+    }}
+  >Svelte Fade Effect</p>
+  {/if}
+</div>
+```
+
+### fade 파라미터와 in: & out:
+fade가 적용되는 시점과 해제되는 시점 각각을 다르게 파라미터로 설정할 수 있다.  
+적용되는 시점은 in 지시문을, 해제되는 시점은 out 지시문을 transiton지시문 대신 사용한다.  
+
+```svelte
+<태그요소 
+  in:fade={{파라미터}} 
+  out:fade={{파라미터}} 
+/>
+```
+
+#### 예제)
+```svelte
+<script>
+  import { fade } from 'svelte/transition'
+  let visible = false
+</script>
+<div>
+  <h4>fade - in: out:</h4>
+  <label>
+    <input type="checkbox" bind:checked={visible} />보임
+  </label>
+  {#if visible}
+  <p 
+    in:fade={{ duration:400 }}
+    out:fade={{ duration:0 }}
+  >Svelte Fade Effect</p>
+  {/if}
+</div>
+```
+</details>
+<br>
+
+## fade
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+</details>
+<br>
+
+## fade
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+</details>
+<br>
+
+</details>
+<br>
+
