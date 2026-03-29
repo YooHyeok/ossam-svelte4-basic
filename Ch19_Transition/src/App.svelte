@@ -4,9 +4,13 @@
 	import Slide from "./02)blur&slide/02)slide/Slide.svelte";
 	import Scale from "./03)scale&fly/01)scale/Scale.svelte";
 	import Fly from "./03)scale&fly/02)fly/Fly.svelte";
+	import Draw from "./04)draw&crsossfade/Draw.svelte";
+	import Crossfade from "./04)draw&crsossfade/Crossfade.svelte";
 </script>
 <Fade/>
 <Blur/>
 <Slide/>
 <Scale/>
 <Fly/>
+<Draw/>
+<Crossfade/>
