@@ -3,7 +3,17 @@
   import { quintOut } from 'svelte/easing'
   const [send, receive] = crossfade({
     duration: 400, // 보내고 받을 때의 시간 설정(기본값)
-    easing: quintOut // 보내고 받을 때의 easing함수
+    easing: quintOut, // 보내고 받을 때의 easing함수
+    fallback(node, params) {
+      return {
+        duration: 300,
+        easing: quintOut,
+        css: t => `
+          transform: scale(${t});
+          opacity: ${t};
+        `
+      }
+    }
   })
 
   const move = (item, from, to) => {

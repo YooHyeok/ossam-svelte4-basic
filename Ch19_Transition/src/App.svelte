@@ -6,6 +6,7 @@
 	import Fly from "./03)scale&fly/02)fly/Fly.svelte";
 	import Draw from "./04)draw&crsossfade/Draw.svelte";
 	import Crossfade from "./04)draw&crsossfade/Crossfade.svelte";
+	import Custom from "./05)custom/Custom.svelte";
 </script>
 <Fade/>
 <Blur/>
@@ -14,3 +15,4 @@
 <Fly/>
 <Draw/>
 <Crossfade/>
+<Custom/>
