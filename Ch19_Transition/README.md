@@ -362,7 +362,92 @@ key는 이동할 요소에 해당한다.
 - crossfade 파라미터
   delay, duration, easing 이외에 fallback이라는 파라미터가 추가된다.  
   fallback은 이동할 대상이 없는 경우 실행되는 트래지션을 정의한다.  
-  (fallback 속성을 사용하기 위해서는 Custon Transition을 구현해야한다)
+  (fallback 속성을 사용하기 위해서는 Custom Transition을 구현해야한다)
+</details>
+<br>
+
+## Custom Transition
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+1. 트랜지션 함수
+2. CSS 트랜지션
+3. tick을 통한 JS 트랜지션 처리
+4. crossfade fallback 적용
+
+### 트랜지션 함수
+Svelte에서 제공하는 트랜지션 외의 트랜지션이 필요할 때, 개발자가 직접 만들 수 있다.  
+커스텀 트랜지션은 CSS와 JS를 사용하여 제작할 수 있고, crossfade에서 추가할 수도 있다.  
+
+#### 기본 문법
+```svelte
+<script>
+  function 트랜지션함수명(HTML요소, {파라미터}) {
+    return {
+      파라미터,
+      css: (t, u) => {}, // css 트랜지션 사용시 처리
+      tick: (t, u) => {}, // js 트랜지션 사용시 처리
+  }
+}
+</script>
+<태그 transition:트랜지션함수명={파라미터}/>
+<태그 in:트랜지션함수명={파라미터} out:트랜지션함수명={파라미터}/>
+```
+
+### CSS 트랜지션
+#### css 속성 문법
+```js
+{
+  css: (t, u) => { /* css 코드 리턴 */ }
+}
+```
+매개변수 t와 u는 Svelte가 매 프레임마다 CSS함수에 전달하는 값이다.
+##### 매개변수 t, u
+- t  
+ Transition Progrss로 트랜지션의 진행률이다.  
+ duration에 따라 Svelte가 자동으로 계산해서 넘겨준다.
+  - in(나타날때): `0.00 → 0.01` → ... → `0.99 → 1.00`
+  - out (사라질 때): `1.00 → 0.99` → ... → `0.01 → 0.00`
+예를들어 `duration: 1000`일 경우 1초동안 약 60번(60fps) 호출되면서 t가 점진적으로 변한다.  
+- u: 1-t (t의 반대 값)  
+  별도 계산 없이 반대값을 바로 쓸 수 있도록 제공해주는 파라미터이다.  
+
+### Tick(JS) 트랜지션
+#### tick 속성 문법
+```js
+{
+  tick: (t, u) => { /* js 코드 리턴 */ }
+}
+```
+매개변수 t와 u는 css 트랜지션과 동일한 원리를 갖는다.  
+
+### crossfade와 fallback
+Svelte 내장 트랜지션 중, 커스텀 트랜지션을 정의하여 사용 가능한 트랜지션 효과로 crossfade가 있으며, crossfade의 이러한 기능을 fallback이라고 정의한다.  
+
+crossfade는 `A영역 → B영역`으로 혹은 `B영역 → A영역`으로 와 같이 두 요소가 쌍으로 짝을지어 한쪽 위치에서 사라지고 다른쪽 위치에서 나타날때 적용되는 효과이다.
+
+이때, 두 요소 중, 한쪽에서 신규로 추가되거나 제거될때에는 crossfade 효과를 줄 수 없다.  
+이와 같이 짝을 짓지 못하는 경우 대신 사용할 트랜지션을 등록하도록 제공하는 기능이 fallback이다.  
+
+```svelte
+<script>
+  import { crossfade } from 'svelte/transition'
+  const [send, recieve] = crossfade({
+    /*파라미터 */
+    , fallback (node, params) {
+      return {
+        css: (t, u) => {}, // css 트랜지션 사용시 처리
+        tick: (t, u) => {}, // js 트랜지션 사용시 처리
+      }
+    }
+  })
+</script>
+```
+위와 같이 파라미터 객체 안에 속성정의가 아닌 fallback이라는 이름의 함수형태로 정의하여 바로 사용할 수 있다.  
+첫번쨰 매개변수 `node`는 현재 crossfade가 적용된 요소의 node객체이며,  
+두번째 매개변수 `params`는 recieve 혹은 send에 할당한 파라미터 객체이다.  
+
 </details>
 <br>
 
