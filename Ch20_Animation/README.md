@@ -23,7 +23,7 @@
 # *[Ch17) CssClass](../Ch17_CssClass/README.md)*
 # *[Ch18) Rollup 기반 Sass 적용](../Ch18_rollup-sass/README.md)*
 # *[Ch19) Transition](../Ch19_Transition/README.md)*
-# Animation
+# Ch20) Animation
 <details>
 <summary>접기/펼치기</summary>
 <br>
@@ -76,3 +76,5 @@ Each 블록의 배열이 재정렬될 때에만 애니메이션이 동작된다.
 Each 블록의 바로 직계 자손 요소에만 적용이 가능하다.  
 </details>
 <br>
+
+# *[Ch21) Motion](../Ch21_Motion/README.md)*
