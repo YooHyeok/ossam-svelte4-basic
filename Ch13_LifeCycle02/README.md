@@ -620,3 +620,4 @@ flush 호출 → Call stack pop(flushB)
 # *[Ch17) CssClass](../Ch17_CssClass/README.md)*
 # *[Ch18) Rollup 기반 Sass 적용](../Ch18_rollup-sass/README.md)*
 # *[Ch19) Transition](../Ch19_Transition/README.md)*
+# *[Ch20) Animation](../Ch20_Animation/README.md)*

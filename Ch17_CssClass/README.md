@@ -226,3 +226,4 @@ button 뿐만 아니라 체크박스, 라디오 등을 조작하는 value에 해
 
 # *[Ch18) Rollup 기반 Sass 적용](../Ch18_rollup-sass/README.md)*
 # *[Ch19) Transition](../Ch19_Transition/README.md)*
+# *[Ch20) Animation](../Ch20_Animation/README.md)*
