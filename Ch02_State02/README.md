@@ -189,3 +189,4 @@ Svelte에서 이벤트를 사용하는 문법은 다음과 같다.
 # *[Ch19) Transition](../Ch19_Transition/README.md)*
 # *[Ch20) Animation](../Ch20_Animation/README.md)*
 # *[Ch21) Motion](../Ch21_Motion/README.md)*
+# *[Ch22) Action](../Ch21_Action/README.md)*

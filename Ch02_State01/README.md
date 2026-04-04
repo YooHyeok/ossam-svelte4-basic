@@ -112,3 +112,4 @@ Svelte에서는 변수 함수 호출 연산 모두 가능하다.
 # *[Ch19) Transition](../Ch19_Transition/README.md)*
 # *[Ch20) Animation](../Ch20_Animation/README.md)*
 # *[Ch21) Motion](../Ch21_Motion/README.md)*
+# *[Ch22) Action](../Ch21_Action/README.md)*
