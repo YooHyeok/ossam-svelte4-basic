@@ -29,51 +29,55 @@
 <summary>접기/펼치기</summary>
 <br>
 
-1. animate: 지시문과 flip 효과
-2. 커스텀 애니메이션
-3. 애니메이션 사용 주의사항
+Svelte 변수는 상태값이기 때문에 변수 값이 변경되면 자동으로 DOM이 업데이트된다.
+이때 변수 값의 변화에 애니메이션을 적용할 수 있는 Motion 기능을 제공한다.
+Motion은 store기반으로 동작하며, 값이 변경될 때 즉시 반영하지 않고 점진적으로 보간하여 애니메이션 효과를 만드는 원리이다.  
+Motion은 크게 tweened와 spring 두가지 효과로 나뉜다.  
 
-## 1) animate: 지시문과 flip 효과
-Svelte는 animate: 지시문을 이용하여 애니메이션 효과를 간편하게 사용할 수 있게 해준다.
-animate: 지시문은 transition: 지시문과 유사한 문법으로 사용한다.  
+1. 모션 tweened 효과
+2. 모션 spring 효과
 
-- animate: 문법
+## 1) tweened 효과
+정해진 duration 동안 균일하게(혹은 easing에 따라) 보간되는 모션이다.  
+- motion tweened 문법
   ```svelte
   <script>
-    import { 애니메이션명 } from 'svelte/animate'
+    import { tweened } from 'svelte/motion'
+    const store명 = tweened(값, 옵션)
   </script>
-  <태그 animate:애니메이션명={파라미터} />
   ```
-
-### flip
-트랜지션은 매우 많은 효과를 지원하지만, 애니메이션은 flip 단 하나의 효과만 지원한다.  
-flip이란 First, Last, Invert, Play의 약어로 애니메이션 기법 중 하나이다.  
-시작 위치와 마지막 위치를 계산하고 애니메이션을 적용하여 x 및 y를 변환한다.  
-요소가 한 위치에서 다른 위치로 전환되는 과정을 애니메이션 처리하여 부드럽게 만들어 준다.  
-
-- flip 파라미터 종류
+  첫번째 매개변수인 값은 변경될 값이며, 초기값을 지정한다.  
+  두번째 매개변수인 옵션에는 객체 타입으로, 각각의 파라미터들을 지정한다.  
+  `store.set()`과 `store.update()`를 통해 두 번째 매개변수의 옵션을 전달할 수 있다.  
+  
+- tweened 파라미터 종류
   | 파라미터명 | 설명 |
   |-----------|------|
   | delay | 애니메이션을 지연시키는 속성이다.<br>기본값은 0이고, 숫자로 작성한다.<br>단위는 밀리초 단위이다. |
   | duration | 애니메이션 효과의 지속시간이다.<br>기본값은 d => Math.sqrt(d)*120이고, 함수 혹은 숫자로 작성한다.<br>단위는 밀리초 단위이다. |
   | easing | 변화에 속도감을 주는 속성이다.<br>easing함수명을 작성하면 된다.<br>기본값은 linear이다.<br>사용시 easing플러그인을 붙여줘야 한다. |
+  | interpolate | 두 값 사이를 보간하여 보다 더 부드럽게 보여주기 위해 사용되는 옵션이다. |
 
-## 2) 커스텀 애니메이션
+## 2) spring 효과
+spring 함수는 값이 변경될 때 스프링처럼 관성을 이용해 움직이는 모션이다.  
 
-```js
-function 애니메이션명(요소, {트랜지션파라미터}) {
-  return {
-    트랜지션파라미터,
-  css: (t, u) => {},
-  tick: (t, u) => {},
-  }
-}
+- motion spring 문법
+  ```svelte
+  <script>
+    import { spring } from 'svelte/motion'
+    const store명 = spring(값, 옵션)
+  </script>
+  ```
+  
+- spring 파라미터 종류
+  | 파라미터명 | 설명 |
+  |-----------|------|
+  | stiffness | 관성이라는 뜻으로 수치가 높을수록 뻣뻣함이 사라져 모션이 반영된다.<br>움직임의 기본 값은 0.15이고, 0~1 사이 숫자로 작성하면 된다. |
+  | damping | 스프링처럼 튕기는 모션 범위이다.<br>값이 낮을수록 범위가 넓어진다.<br>기본값은 0.8이고, 0~1 사이 숫자로 작성하면 된다. |
+  | precision | 스프링처럼 튕기는 동작이 정착된 것으로 간주하는 값이다.<br>값이 클수록 스프링처럼 튕겨지는 횟수가 줄어든다.<br>기본값은 0.01이다. |
+  
 
-```
-
-## 3) animate: 사용 주의사항
-key가 있는 Each 블록 안에서만 사용이 가능하다.  
-Each 블록의 배열이 재정렬될 때에만 애니메이션이 동작된다.  
-Each 블록의 바로 직계 자손 요소에만 적용이 가능하다.  
 </details>
 <br>
+
+# *[Ch22) Action](../Ch22_Action/README.md)*
