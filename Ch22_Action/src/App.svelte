@@ -3,8 +3,10 @@
 	import Action02 from "./Action02.svelte";
 	import Action03 from "./Action03.svelte";
 	import Action04 from "./Action04.svelte";
+	import Library from "./library/Library.svelte";
 </script>
 <Action01/>
 <Action02/>
 <Action03/>
 <Action04/>
+<Library/>
