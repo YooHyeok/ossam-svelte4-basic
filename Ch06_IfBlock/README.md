@@ -129,4 +129,5 @@ else 구문과 같이 `{:else if}` 형태로 중괄호 내에 :콜론뒤에 else
 # *[Ch19) Transition](../Ch19_Transition/README.md)*
 # *[Ch20) Animation](../Ch20_Animation/README.md)*
 # *[Ch21) Motion](../Ch21_Motion/README.md)*
-# *[Ch22) Action](../Ch21_Action/README.md)*
+# *[Ch22) Action](../Ch22_Action/README.md)*
+# *[Ch2) Action](../Ch23_SpecialElement/README.md)*

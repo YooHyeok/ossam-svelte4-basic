@@ -78,4 +78,5 @@ Each 블록의 바로 직계 자손 요소에만 적용이 가능하다.
 <br>
 
 # *[Ch21) Motion](../Ch21_Motion/README.md)*
-# *[Ch22) Action](../Ch21_Action/README.md)*
+# *[Ch22) Action](../Ch22_Action/README.md)*
+# *[Ch23) SpecialElement](../Ch23_SpecialElement/README.md)*

@@ -622,4 +622,5 @@ flush 호출 → Call stack pop(flushB)
 # *[Ch19) Transition](../Ch19_Transition/README.md)*
 # *[Ch20) Animation](../Ch20_Animation/README.md)*
 # *[Ch21) Motion](../Ch21_Motion/README.md)*
-# *[Ch22) Action](../Ch21_Action/README.md)*
+# *[Ch22) Action](../Ch22_Action/README.md)*
+# *[Ch23) SpecialElement](../Ch23_SpecialElement/README.md)*
