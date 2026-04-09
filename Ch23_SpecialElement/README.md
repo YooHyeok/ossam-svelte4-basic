@@ -364,12 +364,187 @@ window에서 실행되지 않는 `mouseenter` 혹은 `mouseleave` 등의 documen
 </details>
 <br>
 
-## 
+## head, options, fragment
 <details>
 <summary>접기/펼치기</summary>
 <br>
 
-### 
+### head
+`<svelte:window>` 혹은 `<svelte:document>`, `<svelte:body>` 와 동일하게 `<svelte:self>`와 반대로 컴포넌트의 최상위 수준에만 나타날 수 있으며, 특정 요소 하위에 선언되어서는 안된다.  
+
+#### 예제) 외부 스타일시트, 파비콘 추가
+```svelte
+<svelte:head>
+  <title>Svelte 특수 요소</title>
+  <link rel="stylesheet" href="build/dark-theme.css">
+  <link rel="shortcut icon" href="https://svelte.dev/favicon.png" type="image/x-icon">
+</svelte:head>
+<div>
+  <h3>Hello world!</h3>
+</div>
+```
+
+### options
+`<svelte:options>` 형태로 사용하며, 컴포넌트에 지정된 컴파일 옵션을 지정할 수 있다.  
+
+#### 옵션 종류
+| 옵션명 | 설명 |
+|--------|------|
+| `immutable={true}` | 변하지 않는 데이터를 사용할 것이라고 컴파일러에게 알려주는 옵션입니다.<br>컴파일러는 간단한 검사로 참조 값이 변경되었는지 검사합니다. |
+| `immutable={false}` | 기본값입니다. 좀 더 엄격하게 값이 변경되었는지 확인하는 옵션입니다. |
+| `accessors={true}` | 컴포넌트의 props에 getter와 setter를 추가합니다. |
+| `accessors={false}` | 기본값입니다. 컴포넌트의 props에 getter와 setter를 안 줍니다. |
+| `namespace="..."` | 컴포넌트가 사용될 네임스페이스입니다. 일반적으로 svg에서 사용됩니다. |
+| `tag="..."` | 컴포넌트를 사용자가 정의한 요소로 컴파일할 때 사용되는 옵션입니다. |
+
+##### `immutable={true}`  
+불필요한 렌더링을 막는 욥선이다.  
+컴포넌트는 재사용가능한 UI이기 때문에 재사용 하다 보면 한 인스턴스에서 명령을 줬음에도 모든 인스턴스가 명령을 받는 경우가 있다.  
+이 경우 불필요한 렌더링이 발생되므로 메모리를 많이 차지하며, 이를 방지할 때 사용할 수 있다.  
+React의 useCallback()과 React.memo()를 사용하는 것과 유사하다.  
+#### 예제) 버튼 클릭 하트 채움 전환
+동일한 컴포넌트로 구성된 여러개의 버튼을 각각 클릭시 모든 버튼이 리랜더링 되는 부분에 대해 불필요한 랜더링을 막도록 적용한 예제이다.
+```svelte
+<svelte:options immutable={true}/>
+<script>
+  import { afterUpdate } from 'svelte';
+  export let lang;
+  afterUpdate(() => {
+    console.log(lang.text + ' : ' + lang.like);
+  });
+</script>
+
+<button on:click>
+  {#if lang.like}
+    <span>♥</span>
+  {:else}
+    <span>♡</span>
+  {/if}
+  {lang.text}
+</button>
+```
+```svelte
+<script>
+  import Heart from "./Heart.svelte";
+  let langs = [
+    { id: 1, like: false, text: 'Svelte' },
+    { id: 2, like: false, text: 'React' },
+    { id: 3, like: false, text: 'Vue' }
+  ];
+  const toggle = id => {
+    langs = langs.map(lang => {
+      if(lang.id === id) {
+        return {
+          id: lang.id,
+          like: !lang.like,
+          text: lang.text
+        };
+      }
+      return lang;
+    });
+  }
+</script>
+<div>
+  {#each langs as lang}
+    <Heart lang={lang} on:click={() => toggle(lang.id)} />
+  {/each}
+</div>
+```
+
+### fragment
+파편 이라는 의미를 가진다.  
+slot으로 특정 컴포넌트를 재사용할 경우 slot의 name을 작성하려면 div 태그 요소 같은 원래 DOM 태그요소를 작성하고 slot name을 작성해야 한다.  
+`<svelte:fragment>` 요소를 사용하면 DOM 요소를 작성하지 않아도 된다.  
+fragment는 파편이라는 의미를 가지며, 특정 노드를 그룹으로 묶어주는 역할을 해주며, 
+예를들어 `span` 태그로 slot name을 바인딩할 경우 `span` 태그에 원하지 않는 스타일이 들어가 디자인 수정을 다시 해야하는 불편함이 사라진다.  
+
+(해당 내용은 앞서 [Ch11) Slot](../Ch11_Slot/README.md) 에서도 다룬바 있다.)  
+
+#### 예제)
+
+- Child03.svelte
+  ```svelte
+  <div class="box">
+    <h4>
+      이름 : 
+      <slot name="name">
+        전달받은 이름이 없습니다.
+      </slot>
+    </h4>
+    <p>
+      배포년도 : 
+      <slot name="release">
+        전달받은 배포년도 없습니다. 
+      </slot>
+    </p>
+  </div>
+  <style>
+    .box{
+      width: 300px; padding: 10px;
+      border: 2px solid black;   
+      margin-bottom: 20px;
+    }
+  </style>
+  ```
+
+- SlotParent03.svelte
+  ```svelte
+  <script>
+    import Child03 from "./Child03.svelte";
+  </script>
+
+  <Child03>
+    <span slot="name">스벨트(Svelte)</span>
+    <span slot="release">2016</span>
+  </Child03>
+  <Child03></Child03>
+  ```
+- SlotParent03.svelte
+  ```svelte
+    <script>
+      import Child03 from "./Child03.svelte";
+    </script>
+    <Child03>
+      <svelte:fragment slot="name">앵귤러(Angular)</svelte:fragment>
+      <svelte:fragment slot="release">2010</svelte:fragment>
+    </Child03>
+    <Child03></Child03>
+  ```
+
+두 코드는 실제 렌더링시 아래와 같은 차이를 갖는다.  
+
+- 결과1) span태그에 name을 적용
+  ```html
+  <div class="box">
+    <h4>
+      "이름 : "
+      <span slot="name">
+        스벨트(Svelte)
+      </slot>
+    </h4>
+    <p>
+      배포년도 : 
+      <span slot="release">
+        2016
+      </slot>
+    </p>
+  </div>
+  ```
+- 결과2) svelte:fragment에 name을 적용
+  ```html
+  <div class="box">
+    <h4>
+      "이름 : "
+      "앵귤러(Angular)"
+    </h4>
+    <p>
+      "배포년도 : "
+      "2010"
+    </p>
+  </div>
+  ```
+
+
 
 </details>
 <br>
