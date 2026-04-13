@@ -27,7 +27,7 @@
 # *[Ch21) Motion](../Ch21_Motion/README.md)*
 # *[Ch22) Action](../Ch23_SpecialElement/README.md)*
 # *[Ch23) SpecialElement](../Ch23_SpecialElement/README.md)*
-# *[Ch24) Lib_Iconify](../Ch24_Lib_Iconify/README.md)*
+# *Ch24) Lib_Iconify*
 <details>
 <summary>접기/펼치기</summary>
 <br>
@@ -105,3 +105,5 @@ npm install @iconify/svelte@4
 
 </details>
 <br>
+
+# *[Ch25) Lib_UUID](../Ch25_Lib_UUID/README.md)*

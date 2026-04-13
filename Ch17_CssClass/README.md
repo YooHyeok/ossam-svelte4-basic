@@ -231,3 +231,4 @@ button 뿐만 아니라 체크박스, 라디오 등을 조작하는 value에 해
 # *[Ch22) Action](../Ch23_SpecialElement/README.md)*
 # *[Ch23) SpecialElement](../Ch23_SpecialElement/README.md)*
 # *[Ch24) Lib_Iconify](../Ch24_Lib_Iconify/README.md)*
+# *[Ch25) Lib_UUID](../Ch25_Lib_UUID/README.md)*
