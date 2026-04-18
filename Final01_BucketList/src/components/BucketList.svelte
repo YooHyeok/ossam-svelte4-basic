@@ -1,2 +1,6 @@
-<script></script>
-<h1>BucketList</h1>
+<script>
+  import BucketItem from "./BucketItem.svelte";
+</script>
+<div class="bucketlist">
+  <BucketItem/>
+</div>
