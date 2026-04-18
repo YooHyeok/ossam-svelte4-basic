@@ -120,5 +120,95 @@ axios({
 </div>
 ```
 
+## await 블록
+Svelte는 마크업 영역에서 비동기를 처리할 수 있는 await 블록을 제공한다.
+
+비동기의 대표적인 예가 이전에 적용한 fetch, axios 등을 활용한 서버 통신이다.
+
+자바스크립트는 이러한 비동기 처리를 위해 Promise를 지원한다.
+
+Promise는 "미래에 완료될 작업"을 나타내는 객체로, 서버에 요청을 보내면 즉시 결과를 반환하지 않고 Promise 객체를 반환한다.
+
+이 Promise는 세 가지 상태를 가진다.
+
+서버 응답을 기다리는 동안은 pending(대기), 응답이 정상적으로 도착하면 fulfilled(이행), 네트워크 오류 등으로 실패하면 rejected(거부) 상태가 된다.
+
+fetch와 axios 모두 Promise 기반으로 동작하며, 서버로부터 데이터를 요청하면 인터넷 상태에 따라 대기시간이 발생한다.
+
+await 블록은 이 Promise의 상태에 따라 각각 다른 UI를 렌더링할 수 있는 기능이다.
+
+{#await}은 pending, {:then}은 fulfilled, {:catch}는 rejected 상태에 대응한다.
+
+이전 예제에서는 each~else 구문을 사용하여 비동기 방식을 처리했지만 Svelte에서는 await 블록을 제공하기 때문에 else 구문을 사용할 이유는 없다.
+
+### await 블록 문법
+```svelte
+<script>
+  const search = async () => {
+    try {
+      const data = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('완료된 데이터');
+        }, 2000);
+      });
+      return data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  search();
+</script>
+
+{#await promise}
+  <!-- pending: 서버 응답을 기다리는 동안 표시할 마크업 영역 -->
+  <p>대기중...</p>
+{:then value}
+  <!-- fulfilled: 요청 성공 시 표시할 마크업 영역, value에 Promise 반환값이 담긴다 -->
+  <p>2초 경과: {value}</p>
+{:catch error}
+  <!-- rejected: 요청 실패 시 표시할 마크업 영역, error에 에러 객체가 담긴다 -->
+  <p>오류 발생...</p>
+{/await}
+```
+
+#### 예제) Promise와 await 블록
+`await` 블록: 반복하려는 변수의 데이터가 0일 경우 else를 호출한다.
+
+```svelte
+<script>
+  import axios from 'axios'
+
+  const search = async () => {
+  try {
+    /* const res = await fetch(`https://jsonplaceholder.typicode.com/comments?_limit=21`);
+    return await res.json(); */
+    const res = await axios.get(`https://jsonplaceholder.typicode.com/comments?_limit=21`);
+    return res.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+let promise = search();
+  
+</script>
+
+<div>
+  <h2>Axios Await Block</h2>
+  {#await promise}
+  <p>loading...</p>
+  {:then value}
+  {#each value as comment}
+  <article>
+    <h4>이름 : {comment.name}</h4>
+    <h4>이메일 주소 : {comment.email}</h4>
+  </article>
+  {/each}
+  {:catch error}
+  <p>{error.message} : 에러가 발생되었습니다.</p>
+  {/await}
+</div>
+```
+
 </details>
 <br>
