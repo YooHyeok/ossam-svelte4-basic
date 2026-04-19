@@ -1,9 +1,10 @@
 <script>
   import BucketItem from "./BucketItem.svelte";
-  export let initialBuckets;
+  export let buckets;
+  export let onToggle;
 </script>
 <div class="bucketlist">
-  {#each initialBuckets as bucket (bucket.id)}
-    <BucketItem {bucket}/>
+  {#each buckets as bucket (bucket.id)}
+    <BucketItem {bucket} {onToggle}/>
   {/each}
 </div>

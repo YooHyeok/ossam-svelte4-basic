@@ -3,9 +3,17 @@
 	import BucketList from './components/BucketList.svelte';
 	import BucketCreate from './components/BucketCreate.svelte'
 	import { initialBuckets } from "./bucketData"
+
+	let buckets = initialBuckets;
+	$:chkCount = buckets.filter(bucket => !bucket.chk).length;
+
+  const onToggle = () => {
+  	buckets = buckets; // 재할당으로 반응성 트리거
+	}
+
 </script>
 <div class="bucketbox">
-	<BucketHeader />
-	<BucketList {initialBuckets} />
+	<BucketHeader {chkCount} />
+	<BucketList {buckets} {onToggle} />
 	<BucketCreate />
 </div>
