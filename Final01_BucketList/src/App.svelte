@@ -11,9 +11,13 @@
   	buckets = buckets; // 재할당으로 반응성 트리거
 	}
 
+	const onRemove = (id) => {
+		buckets = buckets.filter(bucket => bucket.id !== id)
+	}
+
 </script>
 <div class="bucketbox">
 	<BucketHeader {chkCount} />
-	<BucketList {buckets} {onToggle} />
+	<BucketList {buckets} {onToggle} {onRemove}/>
 	<BucketCreate />
 </div>
