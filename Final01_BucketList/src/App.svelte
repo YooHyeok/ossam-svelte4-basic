@@ -15,9 +15,35 @@
 		buckets = buckets.filter(bucket => bucket.id !== id)
 	}
 
+	let editMode = ''
+
+	/** 수정모드 시작 */
+	const onEditMode = id => editMode = id
+	/** 수정모드 종료 (수정시점에 수정 후 호출) */
+	const offEditMode = () => editMode = ''
+	/** 수정한 값을 buckets에 담는 함수 (keyup 함수에서 호출) */
+	const onEditItem = (editBucket) => {
+		buckets = buckets.map(bucket => {
+			if (bucket.id === editBucket.id) {
+				bucket = editBucket
+			}
+			return bucket;
+		})
+		offEditMode();
+	}
+	/** input에서 enter시 데이터 수정 및 수정상태 완료 처리 함수 */
+	const onEditKeyup = (e, editBucket) => {
+		if (e.keyCode === 13) {
+			onEditItem(editBucket);
+		}
+	}
+	
 </script>
 <div class="bucketbox">
 	<BucketHeader {chkCount} />
-	<BucketList {buckets} {onToggle} {onRemove}/>
+	<BucketList 
+		{buckets} {onToggle} {onRemove} 
+		{editMode} {onEditMode} {onEditKeyup}
+	/>
 	<BucketCreate />
 </div>

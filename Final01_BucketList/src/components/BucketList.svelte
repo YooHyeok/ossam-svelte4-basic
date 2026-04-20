@@ -3,9 +3,16 @@
   export let buckets;
   export let onToggle;
   export let onRemove;
+
+  export let editMode;
+  export let onEditMode;
+  export let onEditKeyup;
 </script>
 <div class="bucketlist">
   {#each buckets as bucket (bucket.id)}
-    <BucketItem {bucket} {onToggle} {onRemove} />
+    <BucketItem 
+      {bucket} {onToggle} {onRemove} 
+      {editMode} {onEditMode} {onEditKeyup}
+    />
   {/each}
 </div>

@@ -7,6 +7,10 @@
   export let onToggle;
   export let onRemove;
 
+  export let editMode;
+  export let onEditMode;
+  export let onEditKeyup;
+
 </script>
 <div class="bucketitem">
   <!-- 화면 밖으로 날림 -->
@@ -22,7 +26,18 @@
     >
         <Icon icon="ic:round-check" />
     </label>
-  <p>{bucket.text}</p>
+  {#if editMode === bucket.id && !bucket.chk}
+    <input type="text" 
+      bind:value={bucket.text}
+      on:keyup={(e) => onEditKeyup(e, bucket)}
+    >
+  {:else}
+     <p 
+      on:dblclick={() => onEditMode(bucket.id)}
+    >
+      {bucket.text}
+    </p>
+  {/if}
   <button class="remove" on:click={() => {onRemove(bucket.id)}}>
     <Icon icon="gridicons:trash" />
   </button>
