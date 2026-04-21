@@ -37,6 +37,21 @@
 			onEditItem(editBucket);
 		}
 	}
+
+	import { v4 as uuidv4 } from 'uuid'
+  let bucketText = '';
+  const onDataChange = e => bucketText = e.target.value;
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (bucketText) {
+      const bucket = {
+        id: uuidv4(),
+        text: bucketText,
+        chk: false
+      }
+      buckets = [...buckets, bucket]
+    }
+  }
 	
 </script>
 <div class="bucketbox">
@@ -45,5 +60,7 @@
 		{buckets} {onToggle} {onRemove} 
 		{editMode} {onEditMode} {onEditKeyup}
 	/>
-	<BucketCreate />
+	<BucketCreate 
+		{bucketText} {onDataChange} {onSubmit}
+	/>
 </div>
