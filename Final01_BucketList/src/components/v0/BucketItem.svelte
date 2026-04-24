@@ -17,11 +17,12 @@
   <input 
         type="checkbox" id={chkId}
         bind:checked={bucket.chk}
-        on:change={onToggle}
     />
     <label 
         for={chkId}
         class="checkcircle"
+        on:click={() => onToggle(bucket.id)}
+        on:keydown={() => onToggle(bucket.id)}
         role="presentation"
     >
         <Icon icon="ic:round-check" />

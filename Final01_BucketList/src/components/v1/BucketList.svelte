@@ -1,6 +1,5 @@
 <script>
   import { fade, slide } from "svelte/transition"
-  import { flip } from "svelte/animate";
 
   import BucketItem from "./BucketItem.svelte";
 
@@ -14,14 +13,28 @@
 
   const blink = (node, value) => {
     let prev = value;
+    let animating = false;
     return {
       update: (newValue) => {
-        if (prev !== newValue) {
-          node.animate([
-            { opacity: 1 },
-            { opacity: 0.3 },
-            { opacity: 1 }
-          ], { duration: 300 });
+        if (prev !== newValue && !animating) {
+          animating = true;
+          node.style.position = 'relative';
+          node.style.overflow = 'hidden';
+          const line = document.createElement('div');
+          line.style.cssText = `
+            position:absolute; left:0; right:0; bottom:0;
+            height:100%; pointer-events:none;
+            background: rgba(255,255,255,0.65);
+            transform: translateY(100%);
+          `;
+          node.appendChild(line);
+          line.animate([
+            { transform: 'translateY(100%)' },
+            { transform: 'translateY(-100%)' }
+          ], { duration: 300, easing: 'ease-out' }).onfinish = () => {
+            line.remove();
+            animating = false;
+          };
         }
         prev = newValue;
       }
@@ -30,8 +43,7 @@
 </script>
 <div class="bucketlist">
   {#each buckets as bucket (bucket.id)}
-  <!-- <div in:fade out:slide animate:flip> --> <!-- key가 bucket이고 체크 토글시 map으로 재할당할 경우 -->
-  <div in:fade out:slide use:blink={bucket.chk}> <!-- key가 bucket.id인 경우 flip 작동 안함 -->
+  <div out:slide use:blink={bucket.chk}>
       <BucketItem 
         
         {bucket} {onToggle} {onRemove}
