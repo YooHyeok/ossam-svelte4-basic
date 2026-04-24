@@ -1,9 +1,14 @@
 <script>
   import Icon from "@iconify/svelte"
+  import { onMount } from 'svelte'
   import { v4 as uuidv4 } from 'uuid'
 
   let chkId = uuidv4();
   export let bucket;
+
+  onMount(() => {
+    console.log('v0 mounted:', bucket.text);
+  });
   export let onToggle;
   export let onRemove;
 

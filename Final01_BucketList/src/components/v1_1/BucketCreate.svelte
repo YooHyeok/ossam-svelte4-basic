@@ -2,6 +2,7 @@
   import Icon from "@iconify/svelte"
   import { buckets, bucketText } from './store'
   const { onSubmit } = buckets
+  const { resetForm } = bucketText
   let open = false;
   const onToggle = () => {
     open = !open

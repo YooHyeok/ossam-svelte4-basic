@@ -62,14 +62,14 @@ const setBucketData = () => {
         text: text,
         chk: false
       };
-
+    
       update(datas => {
         const setDatas = [...datas.buckets, bucket];
         datas.buckets = setDatas;
         return datas;
       });
-      bucketText.resetForm();
     }
+    bucketText.resetForm();
   }
   return {
     subscribe,
@@ -87,8 +87,8 @@ const setFormBucket = () => {
   const resetForm = () => {
     set('')
   }
-  return { 
-    subscribe, 
+  return {
+    subscribe,
     set,
     resetForm
   }

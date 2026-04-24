@@ -8,7 +8,7 @@
 	$:chkCount = buckets.filter(bucket => !bucket.chk).length;
 
   const onToggle = (id) => {
-		buckets = buckets.map(bucket => { //bucket.id로 key 지정할 경우
+		buckets = buckets.map(bucket => {
 			return bucket.id === id ? {...bucket, chk: !bucket.chk} : bucket;
 		})
 	}
@@ -51,6 +51,7 @@
         chk: false
       }
       buckets = [...buckets, bucket]
+			bucketText = '';
     }
   }
 	
