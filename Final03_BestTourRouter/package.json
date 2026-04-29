@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@iconify/svelte": "^4.2.0",
+    "query-string": "^9.3.1",
     "sirv-cli": "^2.0.0",
     "svelte-routing": "^2.13.0"
   }
