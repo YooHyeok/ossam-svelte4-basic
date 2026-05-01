@@ -25,12 +25,7 @@
 # *[Ch19) Transition](../Ch19_Transition/README.md)*
 # *[Ch20) Animation](../Ch20_Animation/README.md)*
 # *[Ch21) Motion](../Ch21_Motion/README.md)*
-# *[Ch22) Action](../Ch23_SpecialElement/README.md)*
-# *[Ch23) SpecialElement](../Ch23_SpecialElement/README.md)*
-# *[Ch24) Lib_Iconify](../Ch24_Lib_Iconify/README.md)*
-# *[Ch25) Lib_UUID](../Ch25_Lib_UUID/README.md)*
-# *[Ch26) Router](../Ch26_Router/README.md)*
-# *[Ch27) HttpAwaitBlock](../Ch27_HttpAwaitBlock/README.md)*
+# *[Ch22) Action](../Ch22_Action/README.md)*
 # Ch23) SpecialElement
 <details>
 <summary>접기/펼치기</summary>
@@ -556,3 +551,8 @@ fragment는 파편이라는 의미를 가지며, 특정 노드를 그룹으로 �
 
 </details>
 <br>
+
+# *[Ch24) Lib_Iconify](../Ch24_Lib_Iconify/README.md)*
+# *[Ch25) Lib_UUID](../Ch25_Lib_UUID/README.md)*
+# *[Ch26) Router](../Ch26_Router/README.md)*
+# *[Ch27) HttpAwaitBlock](../Ch27_HttpAwaitBlock/README.md)*
