@@ -1,6 +1,6 @@
 <script>
-    import SWIPER from "./SWIPER.svelte";	
-    import TMDB from "./TMDB.svelte";
+    import SWIPER from "../SWIPER.svelte";	
+    import TMDB from "../TMDB.svelte";
 
     import axios from 'axios';
 

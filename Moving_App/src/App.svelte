@@ -1,4 +1,4 @@
 <script>
-    import Example from "./components/Example.svelte";	
+    import Example from "./components/example/Example.svelte";	
 	</script>
 	<Example/>
