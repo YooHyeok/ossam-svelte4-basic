@@ -3,9 +3,9 @@
   import ListSub from "../components/common/ListSub.svelte";
   import MainLoading from "../components/common/MainLoading.svelte";
   
-  import { nowPromise, genres } from "../libs/store"
+  import { nows, genres } from "../libs/store"
 
-  const promise = Promise.all([$nowPromise, $genres])
+  const promise = Promise.all([$nows, $genres])
   export let id;
 </script>
 

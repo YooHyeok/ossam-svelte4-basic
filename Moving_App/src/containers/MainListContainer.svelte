@@ -2,9 +2,8 @@
   import Error from "../components/common/Error.svelte";
   import MainLoading from "../components/common/MainLoading.svelte";
   import MainList from "../components/main/MainList.svelte";
-  import { nowPromise } from "../libs/store"
   import { nows } from "../libs/store"
-  const promise = $nowPromise
+  const promise = $nows
 </script>
 
 {#await promise}
