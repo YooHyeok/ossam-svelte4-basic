@@ -1,6 +1,6 @@
 <script>
   import H2Title from "../common/H2Title.svelte";
-  import { links } from "svelte-routing"
+  import { routeHref } from "../../libs/router";
   import { Swiper, SwiperSlide } from "swiper/svelte";
   import { Navigation } from "swiper";
 
@@ -8,10 +8,10 @@
   import 'swiper/css/navigation'
 
   export let datas;
-  
 </script>
-<section class="list_box" use:links>
-  <H2Title name="곧 개봉할 흥미로운 예정작"/>
+
+<section class="list_box">
+  <H2Title name="곧 개봉할 새로운 예정작"/>
   <Swiper
     modules={[Navigation]}
     spaceBetween={10}
@@ -20,7 +20,7 @@
   >
     {#each datas as now, index (now)}
       <SwiperSlide>
-        <a href="{`${CONFIG.BASE_URL}/upcoming/${now.id}`}">
+        <a href={routeHref(`/upcoming/${now.id}`)}>
           <figure>
             <div class="img_wrap">
               <img src={`https://image.tmdb.org/t/p/original/${now.poster_path}`} alt={now.title}>

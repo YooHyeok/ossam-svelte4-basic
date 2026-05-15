@@ -2,6 +2,8 @@
 	import Example from "./components/example/Example.svelte";
 
 	import { Router, Route } from "svelte-routing"
+	import { onMount } from "svelte";
+	import { getHashPath, movePathToHash } from "./libs/router";
 
 	import Header from "./components/common/Header.svelte";	
 	import Footer from "./components/common/Footer.svelte";	
@@ -16,7 +18,19 @@
 	import UpcomingSubPage from "./pages/UpcomingSubPage.svelte";
 	import TopSubPage from "./pages/TopSubPage.svelte";
 
-	export let url;
+	let url = getHashPath();
+
+	onMount(() => {
+		movePathToHash();
+		url = getHashPath();
+
+		const handleHashChange = () => {
+			url = getHashPath();
+		};
+
+		window.addEventListener('hashchange', handleHashChange);
+		return () => window.removeEventListener('hashchange', handleHashChange);
+	});
 </script>
 <!-- <Example/> -->
 
@@ -26,15 +40,15 @@
 
 <Header />
 <Router {url}>
-	<Route path={`${CONFIG.BASE_URL}/`} component={MainPage}/>
-	<Route path={`${CONFIG.BASE_URL}/now`} component={NowPage}/>
-	<Route path={`${CONFIG.BASE_URL}/popular`} component={PopularPage}/>
-	<Route path={`${CONFIG.BASE_URL}/upcoming`} component={UpcomingPage}/>
-	<Route path={`${CONFIG.BASE_URL}/top`} component={TopPage}/>
+	<Route path="/" component={MainPage}/>
+	<Route path="/now" component={NowPage}/>
+	<Route path="/popular" component={PopularPage}/>
+	<Route path="/upcoming" component={UpcomingPage}/>
+	<Route path="/top" component={TopPage}/>
 
-	<Route path={`${CONFIG.BASE_URL}/now/:id`} component={NowSubPage}/>
-	<Route path={`${CONFIG.BASE_URL}/popular/:id`} component={PopularSubPage}/>
-	<Route path={`${CONFIG.BASE_URL}/upcoming/:id`} component={UpcomingSubPage}/>
-	<Route path={`${CONFIG.BASE_URL}/top/:id`} component={TopSubPage}/>
+	<Route path="/now/:id" component={NowSubPage}/>
+	<Route path="/popular/:id" component={PopularSubPage}/>
+	<Route path="/upcoming/:id" component={UpcomingSubPage}/>
+	<Route path="/top/:id" component={TopSubPage}/>
 </Router>
 <Footer />

@@ -1,4 +1,5 @@
 import { spawn } from 'child_process';
+import fs from 'fs';
 import svelte from 'rollup-plugin-svelte';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
@@ -8,6 +9,22 @@ import css from 'rollup-plugin-css-only';
 import json from '@rollup/plugin-json';
 
 const production = !process.env.ROLLUP_WATCH;
+const BASE_URL = production ? '/svelte4-basic-moving/' : '/';
+
+// public/index.template.html 을 처리해서 public/index.html 생성
+const htmlReplace = () => {
+	return {
+		name: 'html-replace',
+		buildEnd() {
+			const template = 'public/index.template.html';
+			const outputs = ['public/index.html', 'public/404.html'];
+			if (fs.existsSync(template)) {
+				const html = fs.readFileSync(template, 'utf8').replace(/__BASE_URL__/g, BASE_URL);
+				outputs.forEach((output) => fs.writeFileSync(output, html));
+			}
+		}
+	};
+}
 
 function serve() {
 	let server;
@@ -39,6 +56,7 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		htmlReplace(),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production

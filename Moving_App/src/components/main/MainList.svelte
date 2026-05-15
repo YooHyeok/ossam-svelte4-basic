@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte"
-  import { link } from "svelte-routing"
+  import { routeHref } from "../../libs/router";
   import { Swiper, SwiperSlide } from "swiper/svelte";
   import { Autoplay, Pagination, EffectFade } from "swiper";
 
@@ -11,26 +11,27 @@
 
   export let datas;
 
-
   let mains = [];
   const random = Math.floor(Math.random() * 15);
   mains = datas.slice(random, random + 5)
-  
+
   let swiper;
   onMount(() => {
     const swiperinstance = document.querySelector('.mainSwiper').swiper;
     swiper = swiperinstance
   })
+
   let cnt = false;
   const onHandleClick = () => {
     if (cnt) {
       swiper.autoplay.start();
       return;
-    } 
+    }
     swiper.autoplay.stop();
     cnt = !cnt
   }
 </script>
+
 <main>
   <Swiper
     modules={[Autoplay, Pagination, EffectFade]}
@@ -54,7 +55,7 @@
             {main.overview}
           {/if}
         </p>
-        <a href={`${CONFIG.BASE_URL}/now/${main.id}`} use:link>자세히보기</a>
+        <a href={routeHref(`/now/${main.id}`)}>자세히보기</a>
       </SwiperSlide>
     {/each}
   </Swiper>
