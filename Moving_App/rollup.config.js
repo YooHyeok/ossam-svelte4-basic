@@ -10,17 +10,36 @@ import json from '@rollup/plugin-json';
 
 const production = !process.env.ROLLUP_WATCH;
 const deploy = process.env.DEPLOY === 'true';
-const BASE_URL = deploy ? '/svelte4-basic-moving/' : '/';
+const outputDir = deploy ? 'public' : 'public-local';
+const BASE_PATH = deploy ? '/svelte4-basic-moving' : '';
+const BASE_HREF = deploy ? `${BASE_PATH}/` : '/';
+const ROUTER_MODE = deploy ? 'hash' : 'history';
 
-// public/index.template.html 을 처리해서 public/index.html 생성
+const copyLocalAsset = (asset) => {
+	const source = `public/${asset}`;
+	const target = `${outputDir}/${asset}`;
+
+	if (!deploy && fs.existsSync(source)) {
+		fs.cpSync(source, target, { recursive: true });
+	}
+};
+
+// public/index.template.html 을 처리해서 진입 HTML 생성
 const htmlReplace = () => {
 	return {
 		name: 'html-replace',
 		buildEnd() {
 			const template = 'public/index.template.html';
-			const outputs = ['public/index.html', 'public/404.html'];
+			const outputs = [`${outputDir}/index.html`, `${outputDir}/404.html`];
 			if (fs.existsSync(template)) {
-				const html = fs.readFileSync(template, 'utf8').replace(/__BASE_URL__/g, BASE_URL);
+				fs.mkdirSync(outputDir, { recursive: true });
+				['favicon.png', 'global.css', 'img', 'static'].forEach(copyLocalAsset);
+				fs.mkdirSync(`${outputDir}/static`, { recursive: true });
+				fs.writeFileSync(
+					`${outputDir}/static/config.js`,
+					`window.CONFIG = {\n  BASE_URL: '${BASE_PATH}',\n  ROUTER_MODE: '${ROUTER_MODE}'\n};\n`
+				);
+				const html = fs.readFileSync(template, 'utf8').replace(/__BASE_URL__/g, BASE_HREF);
 				outputs.forEach((output) => fs.writeFileSync(output, html));
 			}
 		}
@@ -54,7 +73,7 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		file: `${outputDir}/build/bundle.js`
 	},
 	plugins: [
 		htmlReplace(),
@@ -87,7 +106,7 @@ export default {
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		!production && livereload(outputDir),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify

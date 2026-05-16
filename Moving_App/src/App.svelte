@@ -3,7 +3,7 @@
 
 	import { Router, Route } from "svelte-routing"
 	import { onMount } from "svelte";
-	import { getHashPath, movePathToHash } from "./libs/router";
+	import { getBaseUrl, getRoutePath, isHashRouter, movePathToHash } from "./libs/router";
 
 	import Header from "./components/common/Header.svelte";	
 	import Footer from "./components/common/Footer.svelte";	
@@ -23,15 +23,37 @@
 
 	onMount(() => {
 		movePathToHash();
-		url = getHashPath();
+		url = getRoutePath();
 		routerReady = true;
 
-		const handleHashChange = () => {
-			url = getHashPath();
+		const handleRouteChange = () => {
+			url = getRoutePath();
 		};
 
-		window.addEventListener('hashchange', handleHashChange);
-		return () => window.removeEventListener('hashchange', handleHashChange);
+		const handleLinkClick = (event) => {
+			if (isHashRouter() || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+			const anchor = event.target.closest('a[href]');
+			if (!anchor || anchor.target || anchor.hasAttribute('download')) return;
+			if (anchor.getAttribute('href').startsWith('#')) return;
+
+			const nextUrl = new URL(anchor.href);
+			if (nextUrl.origin !== window.location.origin) return;
+
+			const baseUrl = getBaseUrl();
+			if (baseUrl && !nextUrl.pathname.startsWith(baseUrl)) return;
+
+			event.preventDefault();
+			window.history.pushState(null, '', `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`);
+			handleRouteChange();
+		};
+
+		window.addEventListener(isHashRouter() ? 'hashchange' : 'popstate', handleRouteChange);
+		document.addEventListener('click', handleLinkClick);
+		return () => {
+			window.removeEventListener(isHashRouter() ? 'hashchange' : 'popstate', handleRouteChange);
+			document.removeEventListener('click', handleLinkClick);
+		};
 	});
 </script>
 <!-- <Example/> -->

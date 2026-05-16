@@ -8,15 +8,35 @@ export const getBaseUrl = () => {
   return window.CONFIG?.BASE_URL || '';
 };
 
-export const routeHref = (path = '/') => `${getBaseUrl()}/#${normalizePath(path)}`;
+export const isHashRouter = () => {
+  if (typeof window === 'undefined') return false;
+  return window.CONFIG?.ROUTER_MODE === 'hash';
+};
 
-export const getHashPath = () => {
+export const routeHref = (path = '/') => {
+  const routePath = normalizePath(path);
+  return isHashRouter() ? `${getBaseUrl()}/#${routePath}` : `${getBaseUrl()}${routePath}`;
+};
+
+export const getRoutePath = () => {
   if (typeof window === 'undefined') return '/';
-  return normalizePath(window.location.hash.replace(/^#/, '') || '/');
+
+  if (isHashRouter()) {
+    return normalizePath(window.location.hash.replace(/^#/, '') || '/');
+  }
+
+  const baseUrl = getBaseUrl();
+  let path = window.location.pathname;
+
+  if (baseUrl && path.startsWith(baseUrl)) {
+    path = path.slice(baseUrl.length);
+  }
+
+  return normalizePath(path || '/');
 };
 
 export const movePathToHash = () => {
-  if (typeof window === 'undefined' || window.location.hash) return;
+  if (typeof window === 'undefined' || !isHashRouter() || window.location.hash) return;
 
   const baseUrl = getBaseUrl();
   let path = window.location.pathname;
@@ -30,9 +50,4 @@ export const movePathToHash = () => {
   if (path) {
     window.history.replaceState(null, '', routeHref(path));
   }
-};
-
-export const tmdbImage = (path, size = 'w500') => {
-  if (!path) return '';
-  return `https://image.tmdb.org/t/p/${size}${path}`;
 };

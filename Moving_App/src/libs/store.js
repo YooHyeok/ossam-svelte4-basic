@@ -19,7 +19,7 @@ const setDatas = (url) => {
       const res = await axios.request(options)
       return res;
     } catch (error) {
-      throw error
+      throw new Error(errror)
     }
   }
   const { subscribe } = writable(getDatas())
@@ -45,7 +45,7 @@ const setGenres = (url) => {
       const res = await axios.request(options)
       return res;
     } catch (error) {
-      throw error
+      throw new Error(errror)
     }
   }
   const { subscribe } = writable(getGenres())
